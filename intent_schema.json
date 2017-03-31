@@ -1,0 +1,11 @@
+{
+    "intents": [{
+        "intent": "AudioBizv2",
+        "slots": [{
+            "name": "Company",
+            "type": "AMAZON.Corporation"
+        }]
+    }, {
+        "intent": "AMAZON.CancelIntent"
+    }]
+}
