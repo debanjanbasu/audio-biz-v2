@@ -54,7 +54,7 @@ function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
     const cardTitle = "Welcome to Audio Biz - the daily habit of successful people!";
-    const speechOutput = "You can ask for the company name! to search for the latest stock details!";
+    const speechOutput = "You can ask for the company name! and to search for the latest stock details just say AFR Audio Biz for...!";
     callback(session.attributes,
         buildSpeechletResponse(cardTitle, speechOutput, "", true));
 }
@@ -69,9 +69,7 @@ function onIntent(intentRequest, session, callback) {
     const intentName = intentRequest.intent.name;
 
     // dispatch custom intents to handlers here
-    if (intentName == 'TestIntent') {
-        handleTestRequest(intent, session, callback);
-    } else if (intentName == 'AudioBiz') {
+    if (intentName == 'AudioBiz') {
         handleAudioBizRequest(intent, session, callback);
     } else {
         throw "Invalid intent";
@@ -86,11 +84,6 @@ function onSessionEnded(sessionEndedRequest, session) {
     console.log(`onSessionEnded requestId=${sessionEndedRequest.requestId}, sessionId=${session.sessionId}`);
 
     // Add any cleanup logic here
-}
-
-function handleTestRequest(intent, session, callback) {
-    callback(session.attributes,
-        buildSpeechletResponseWithoutCard("Hello, World!", "", "true"));
 }
 
 function handleAudioBizRequest(intent, session, callback) {

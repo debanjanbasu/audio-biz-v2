@@ -7,7 +7,5 @@
         }]
     }, {
         "intent": "AMAZON.CancelIntent"
-    }, {
-        "intent": "TestIntent"
     }]
 }
