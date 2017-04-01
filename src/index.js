@@ -55,10 +55,16 @@ function onSessionStarted(sessionStartedRequest, session) {
 function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
-    const cardTitle = "Welcome to Audio Biz - the daily habit of successful people!";
-    const speechOutput = `${cardTitle} You can ask for the company name! Also search for company news and other details! Please ask me to lookup information for a company!`;
+    const AFRTagLine = `The daily habit of successful people!`,
+        cardTitle = `Welcome to Audio Biz - ${AFRTagLine}`,
+        menu1 = `1. Lookup information for Company Name or ASX Code`,
+        menu2 = `2. Get today's Top Gainers and Losers`,
+        menu3 = `3. Get today's latest Market News`;
+    // prepare the initial speec
+    const speechOutput = `${cardTitle}. You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
+
     callback(session.attributes,
-        buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me to lookup information for a company!", false));
+        buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
 }
 
 /**
