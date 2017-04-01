@@ -58,7 +58,7 @@ function onLaunch(launchRequest, session, callback) {
     const cardTitle = "Welcome to Audio Biz - the daily habit of successful people!";
     const speechOutput = `${cardTitle} You can ask for the company name! Also search for company news and other details! Please ask me to lookup information for which company?`;
     callback(session.attributes,
-        buildSpeechletResponse(cardTitle, speechOutput, "", false));
+        buildSpeechletResponse(cardTitle, speechOutput, "Please ask me to lookup information for which company?", false));
 }
 
 /**
