@@ -1,5 +1,7 @@
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
+const getClosestMatch = require('./functional_modules/get_closest_match_stock');
+// console.log(getClosestMatch("commbank"));
 exports.handler = (event, context) => {
     try {
         console.log(`event.session.application.applicationId=${event.session.application.applicationId}`);
@@ -88,7 +90,7 @@ function onSessionEnded(sessionEndedRequest, session) {
 
 function handleAudioBizRequest(intent, session, callback) {
     callback(session.attributes,
-        buildSpeechletResponseWithoutCard(`You said ${intent.slots.Company.value}`, "", "true"));
+        buildSpeechletResponseWithoutCard(`You asked for company ${getClosestMatch(intent.slots.Company.value)}`, "", "true"));
 }
 
 // ------- Helper functions to build responses -------

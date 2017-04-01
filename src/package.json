@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "fuzzyset.js": "^0.0.1"
+  }
+}
