@@ -1,7 +1,9 @@
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
-const getClosestMatch = require('./functional_modules/get_closest_match_stock');
-// console.log(getClosestMatch("commbank"));
+const getClosestMatch = require('./functional_modules/get_closest_match_stock'),
+    getStockData = require('./functional_modules/get_share_price_data');
+
+console.log(getStockData("CBA"));
 exports.handler = (event, context) => {
     try {
         console.log(`event.session.application.applicationId=${event.session.application.applicationId}`);

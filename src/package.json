@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "fuzzyset.js": "^0.0.1"
+    "fuzzyset.js": "^0.0.1",
+    "request": "^2.81.0"
   }
 }
