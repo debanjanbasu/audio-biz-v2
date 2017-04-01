@@ -9,6 +9,8 @@ companyFuzzySet.useLevenshtein = false;
 
 // console.log(companyFuzzySet.get("commbank"));
 
-module.exports = (dataToBeMatched) => {
-    return companyFuzzySet.get(dataToBeMatched)[0][1];
+module.exports = dataToBeMatched => {
+    const fullCompanyName = companyFuzzySet.get(dataToBeMatched)[0][1];
+    // returns the three letter company code
+    return stocks[companyFuzzySet.values().indexOf(fullCompanyName)].ASXcode;
 }
