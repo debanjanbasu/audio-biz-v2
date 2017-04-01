@@ -8,5 +8,7 @@ Windows - Just install 7zip
 
 chmod +x publish.sh
 
+Do not forget to install AWS CLI, as this is a dependency
+
 This should effectively update the Lambda function: ./publish.sh
 
