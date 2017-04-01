@@ -10,7 +10,12 @@ companyFuzzySet.useLevenshtein = false;
 // console.log(companyFuzzySet.get("commbank"));
 
 module.exports = dataToBeMatched => {
-    const fullCompanyName = companyFuzzySet.get(dataToBeMatched)[0][1];
-    // returns the three letter company code
-    return stocks[companyFuzzySet.values().indexOf(fullCompanyName)].ASXcode;
+    // check if it is already the share price code
+    if (dataToBeMatched.length > 3) {
+        const fullCompanyName = companyFuzzySet.get(dataToBeMatched)[0][1];
+        // returns the three letter company code
+        return stocks[companyFuzzySet.values().indexOf(fullCompanyName)].ASXcode;
+    } else {
+        return dataToBeMatched;
+    }
 }

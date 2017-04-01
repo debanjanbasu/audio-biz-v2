@@ -1,6 +1,6 @@
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
-const getStockData = require('./functional_modules/get_share_price_data');
+const getSharePriceData = require('./functional_modules/get_share_price_data');
 
 exports.handler = (event, context) => {
     try {
@@ -89,10 +89,12 @@ function onSessionEnded(sessionEndedRequest, session) {
 }
 
 function handleAudioBizRequest(intent, session, callback) {
-    getStockData(intent.slots.Company.value, data => {
+    // keep only the alphabets
+    const companyAskedFor = intent.slots.Company.value.replace(/[^a-z]/gi, '');
+    getSharePriceData(intent.slots.Company.value, data => {
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard(`You asked for company ${intent.slots.Company.value} and the information for it is
-        	${JSON.stringify(data)}`, "", "true"));
+            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is
+            ${JSON.stringify(data)}`, "", "true"));
     });
 
 }
