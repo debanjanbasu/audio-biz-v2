@@ -1,10 +1,22 @@
 {
     "intents": [{
-        "intent": "AudioBiz",
         "slots": [{
             "name": "Company",
             "type": "AMAZON.Corporation"
-        }]
+        }],
+        "intent": "AudioBiz"
+    }, {
+        "intent": "AMAZON.StartOverIntent"
+    }, {
+        "intent": "AMAZON.RepeatIntent"
+    }, {
+        "intent": "AMAZON.HelpIntent"
+    }, {
+        "intent": "AMAZON.YesIntent"
+    }, {
+        "intent": "AMAZON.NoIntent"
+    }, {
+        "intent": "AMAZON.StopIntent"
     }, {
         "intent": "AMAZON.CancelIntent"
     }]
