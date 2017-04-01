@@ -92,7 +92,7 @@ function handleAudioBizRequest(intent, session, callback) {
     getStockData(intent.slots.Company.value, data => {
         callback(session.attributes,
             buildSpeechletResponseWithoutCard(`You asked for company ${intent.slots.Company.value} and the information for it is
-        	${data}`, "", "true"));
+        	${JSON.stringify(data)}`, "", "true"));
     });
 
 }
