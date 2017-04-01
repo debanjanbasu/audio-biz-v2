@@ -56,9 +56,9 @@ function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
     const cardTitle = "Welcome to Audio Biz - the daily habit of successful people!";
-    const speechOutput = `${cardTitle} You can ask for the company name! Also search for company news and other details! Please ask me to lookup information for which company?`;
+    const speechOutput = `${cardTitle} You can ask for the company name! Also search for company news and other details! Please ask me to lookup information for a company!`;
     callback(session.attributes,
-        buildSpeechletResponse(cardTitle, speechOutput, "Please ask me to lookup information for which company?", false));
+        buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me to lookup information for a company!", false));
 }
 
 /**
