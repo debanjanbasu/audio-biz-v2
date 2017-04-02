@@ -2,6 +2,7 @@
 // etc.) The JSON body of the request is provided in the event parameter.
 const getSharePriceData = require('./functional_modules/get_share_price_data'),
     getGainersAndLosers = require('./functional_modules/get_top_gainers_and_losers'),
+    getLatestNews = require('./functional_modules/get_latest_news'),
     AFRTagLine = `The daily habit of successful people!`,
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
@@ -82,6 +83,8 @@ function onIntent(intentRequest, session, callback) {
         handleAudioBizRequest(intent, session, callback);
     } else if (intentName == 'GainersandLosers') {
         handleGainersandLosers(intent, session, callback);
+    } else if (intentName == 'LatestNews') {
+        handleLatestNews(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -108,6 +111,12 @@ function handleAudioBizRequest(intent, session, callback) {
 function handleGainersandLosers(intent, session, callback) {
     getGainersAndLosers(data => {
         callback(session.attributes, buildSpeechletResponseWithoutCard(`Top Gainers and Losers are : ${data} . ${menuText}`, menuText, false));
+    });
+}
+
+function handleLatestNews(intent, session, callback) {
+    getLatestNews(data => {
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`The latest news are : ${data} . ${menuText}`, menuText, false));
     });
 }
 

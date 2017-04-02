@@ -8,6 +8,8 @@
     }, {
         "intent": "GainersandLosers"
     }, {
+        "intent": "LatestNews"
+    }, {
         "intent": "AMAZON.StartOverIntent"
     }, {
         "intent": "AMAZON.RepeatIntent"
