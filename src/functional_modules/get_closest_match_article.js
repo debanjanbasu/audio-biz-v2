@@ -5,7 +5,7 @@ module.exports = (dataToBeMatched, arrayOfArticles) => {
     let articlesFuzzySet = new fuzzysetJS(arrayOfArticles.map(data => data.title));
 
     // If use_levenshtein is false, then we return all top matched elements with the same cosine similarity.
-    articlesFuzzySet.useLevenshtein = true;
+    articlesFuzzySet.useLevenshtein = false;
 
     // check if it is already the share price code
     const matchedTitle = articlesFuzzySet.get(dataToBeMatched)[0][1];
