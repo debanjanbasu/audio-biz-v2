@@ -5,7 +5,7 @@ const getSharePriceData = require('./functional_modules/get_share_price_data'),
     AFRTagLine = `The daily habit of successful people!`,
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
-    menu3 = `3 Today's latest Market News! `,
+    menu3 = `3 Latest Market News! `,
     menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
 
 exports.handler = (event, context) => {
