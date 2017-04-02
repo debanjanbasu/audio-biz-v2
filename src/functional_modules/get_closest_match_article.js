@@ -2,7 +2,7 @@
 const fuzzysetJS = require('fuzzyset.js');
 
 module.exports = (dataToBeMatched, arrayOfArticles) => {
-    let articlesFuzzySet = new fuzzysetJS(arrayOfArticles.map(data => data.title));
+    const articlesFuzzySet = new fuzzysetJS(arrayOfArticles.map(data => data.title));
 
     // If use_levenshtein is false, then we return all top matched elements with the same cosine similarity.
     articlesFuzzySet.useLevenshtein = false;
