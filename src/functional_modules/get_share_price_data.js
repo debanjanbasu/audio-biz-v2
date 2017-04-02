@@ -9,7 +9,7 @@ module.exports = (dataToBeFetched, cb) => {
             return data.json();
         })
         .then(json => {
-            const formattedResponse = `Security Code : ${json.marketData[companyASXCode].securityCode}, Issuer Full Name : ${json.marketData[companyASXCode].issuerName.fullName}, Last Price : $ ${json.marketData[companyASXCode].priceLast}, Price Movement : ${json.marketData[companyASXCode].priceMvt} $, Price Movement in percentage : ${json.marketData[companyASXCode].priceMvtPC} %, Traded Volume : ${json.marketData[companyASXCode].volume}, Traded Value : ${json.marketData[companyASXCode].value}, Company Profile : ${json.marketData[companyASXCode].issuerPrincipalActivity}, ASIC Code : ${json.marketData[companyASXCode].issuerASICNumber}`;
+            const formattedResponse = `Security Code : ${json.marketData[companyASXCode].securityCode}, Issuer Full Name : ${json.marketData[companyASXCode].issuerName.fullName}, Last Price : ${json.marketData[companyASXCode].priceLast} dollar, Price Movement : ${json.marketData[companyASXCode].priceMvt} dollar, Price Movement in percentage : ${json.marketData[companyASXCode].priceMvtPC} %, Traded Volume : ${json.marketData[companyASXCode].volume}, Traded Value : ${json.marketData[companyASXCode].value}, Company Profile : ${json.marketData[companyASXCode].issuerPrincipalActivity}, ASIC Code : ${json.marketData[companyASXCode].issuerASICNumber}`;
             cb(formattedResponse);
         });
 }

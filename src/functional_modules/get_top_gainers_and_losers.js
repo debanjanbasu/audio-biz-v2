@@ -9,7 +9,7 @@ module.exports = cb => {
         .then(json => {
             let formattedResponse = '';
             json.marketData.forEach(data => {
-                formattedResponse += `Security Code : ${data.securityCode}, Issuer Full Name : ${data.issuerName.fullName}, Last Price : ${data.priceLast}, ${data.priceMvtPC < 0 ? 'Loss' : 'Gain'} : ${data.priceMvtPC} %`;
+                formattedResponse += `Security Code : ${data.securityCode}, Issuer Full Name : ${data.issuerName.fullName}, Last Price : ${data.priceLast} dollar, ${data.priceMvtPC < 0 ? 'Loss' : 'Gain'} : ${data.priceMvtPC} %`;
             })
             cb(formattedResponse);
         });
