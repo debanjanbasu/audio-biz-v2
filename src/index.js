@@ -1,6 +1,7 @@
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
 const getSharePriceData = require('./functional_modules/get_share_price_data'),
+    getGainersAndLosers = require('./functional_modules/get_top_gainers_and_losers'),
     AFRTagLine = `The daily habit of successful people!`,
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
@@ -60,7 +61,7 @@ function onSessionStarted(sessionStartedRequest, session) {
 function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
-    // prepare the initial speec
+    // prepare the initial speech
     const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. ${menuText}`;
 
     callback(session.attributes,
@@ -105,7 +106,9 @@ function handleAudioBizRequest(intent, session, callback) {
 }
 
 function handleGainersandLosers(intent, session, callback) {
-    callback(session.attributes, buildSpeechletResponseWithoutCard("hello gainers and losers", menuText, false));
+    getGainersAndLosers(data => {
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`Top Gainers and Losers are : ${data} . ${menuText}`, menuText, false));
+    });
 }
 
 // ------- Helper functions to build responses -------
