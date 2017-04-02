@@ -1,6 +1,8 @@
 'use strict';
-const stocks = require('../company_map_asx.json');
-const companyFuzzySet = new require('fuzzyset.js')(stocks.map((data) => {
+const stocks = require('../company_map_asx.json'),
+    fuzzysetJS = require('fuzzyset.js');
+
+let companyFuzzySet = fuzzysetJS(stocks.map((data) => {
     return data.company_name;
 }));
 
