@@ -3,11 +3,13 @@
 const getSharePriceData = require('./functional_modules/get_share_price_data'),
     getGainersAndLosers = require('./functional_modules/get_top_gainers_and_losers'),
     getLatestNews = require('./functional_modules/get_latest_news'),
+    readArticle = require('./functional_modules/read_article'),
     AFRTagLine = `The daily habit of successful people!`,
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
     menu3 = `3 Latest Market News! `,
-    menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
+    menu4 = `4 Read Article for Article Title (I will try to match it from the Latest Articles!)`,
+    menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3 + menu4}`;
 
 exports.handler = (event, context) => {
     try {
@@ -85,6 +87,8 @@ function onIntent(intentRequest, session, callback) {
         handleGainersandLosers(intent, session, callback);
     } else if (intentName == 'LatestNews') {
         handleLatestNews(intent, session, callback);
+    } else if (intentName == 'ReadArticle') {
+        handleReadArticle(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -117,6 +121,14 @@ function handleGainersandLosers(intent, session, callback) {
 function handleLatestNews(intent, session, callback) {
     getLatestNews(data => {
         callback(session.attributes, buildSpeechletResponseWithoutCard(`The latest news are : ${data} . ${menuText}`, menuText, false));
+    });
+}
+
+function handleReadArticle(intent, session, callback) {
+    // keep only the alphabets
+    const articleAskedFor = intent.slots.Article.value;
+    readArticle(articleAskedFor, data => {
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for article ${articleAskedFor} and the content in it is ${data} . ${menuText}`, menuText, false));
     });
 }
 

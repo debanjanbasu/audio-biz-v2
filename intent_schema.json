@@ -10,6 +10,12 @@
     }, {
         "intent": "LatestNews"
     }, {
+        "slots": [{
+            "name": "Article",
+            "type": "AMAZON.Service"
+        }],
+        "intent": "ReadArticle"
+    }, {
         "intent": "AMAZON.StartOverIntent"
     }, {
         "intent": "AMAZON.RepeatIntent"

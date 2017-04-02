@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "diffbot": "^1.0.3",
     "fuzzyset.js": "^0.0.1",
     "node-fetch": "^2.0.0-alpha.3"
   }

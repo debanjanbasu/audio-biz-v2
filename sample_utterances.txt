@@ -29,3 +29,8 @@ LatestNews to get latest news
 LatestNews get latest news
 LatestNews find latest news
 LatestNews latest news
+ReadArticle read article {Article}
+ReadArticle read article {Article} to me
+ReadArticle read {Article}
+ReadArticle read article {Article}
+ReadArticle to read article {Article}
