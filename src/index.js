@@ -79,7 +79,7 @@ function onIntent(intentRequest, session, callback) {
     if (intentName == 'AudioBizStock') {
         handleAudioBizRequest(intent, session, callback);
     } else if (intentName == 'GainersandLosers') {
-        buildSpeechletResponseWithoutCard("today's top gainers and losers", "", false);
+        handleGainerandLosers(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -102,6 +102,14 @@ function handleAudioBizRequest(intent, session, callback) {
         callback(session.attributes,
             buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
+
+}
+
+function handleGainerandLosers(intent, session, callback) {
+    // keep only the alphabets
+    callback(session.attributes,
+        buildSpeechletResponseWithoutCard(`Today's top gainers and losers : Blah blah blah . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
+};
 
 }
 
