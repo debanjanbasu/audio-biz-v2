@@ -78,6 +78,8 @@ function onIntent(intentRequest, session, callback) {
     // dispatch custom intents to handlers here
     if (intentName == 'AudioBizStock') {
         handleAudioBizRequest(intent, session, callback);
+    } else if (intentName == 'GainersandLosers') {
+        handleGainersandLosers(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -99,13 +101,10 @@ function handleAudioBizRequest(intent, session, callback) {
     getSharePriceData(intent.slots.Company.value, data => {
         callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
-
 }
 
 function handleGainersandLosers(intent, session, callback) {
     callback(session.attributes, buildSpeechletResponseWithoutCard("hello gainers and losers", "", false));
-}
-
 }
 
 // ------- Helper functions to build responses -------
