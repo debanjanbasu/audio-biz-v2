@@ -78,8 +78,6 @@ function onIntent(intentRequest, session, callback) {
     // dispatch custom intents to handlers here
     if (intentName == 'AudioBizStock') {
         handleAudioBizRequest(intent, session, callback);
-    } else if (intentName == 'GainersandLosers') {
-        handleGainerandLosers(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -99,17 +97,14 @@ function handleAudioBizRequest(intent, session, callback) {
     // keep only the alphabets
     const companyAskedFor = intent.slots.Company.value.replace(/[^a-z]/gi, '');
     getSharePriceData(intent.slots.Company.value, data => {
-        callback(session.attributes,
-            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
 
 }
 
-function handleGainerandLosers(intent, session, callback) {
-    // keep only the alphabets
-    callback(session.attributes,
-        buildSpeechletResponseWithoutCard(`Today's top gainers and losers : Blah blah blah . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
-};
+function handleGainersandLosers(intent, session, callback) {
+    callback(session.attributes, buildSpeechletResponseWithoutCard("hello gainers and losers", "", false));
+}
 
 }
 
