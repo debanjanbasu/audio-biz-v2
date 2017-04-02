@@ -99,8 +99,7 @@ function handleAudioBizRequest(intent, session, callback) {
     const companyAskedFor = intent.slots.Company.value.replace(/[^a-z]/gi, '');
     getSharePriceData(intent.slots.Company.value, data => {
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is
-            ${JSON.stringify(data)}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
+            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
 
 }
