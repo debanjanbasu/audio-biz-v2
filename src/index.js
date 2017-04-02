@@ -2,9 +2,10 @@
 // etc.) The JSON body of the request is provided in the event parameter.
 const getSharePriceData = require('./functional_modules/get_share_price_data'),
     AFRTagLine = `The daily habit of successful people!`,
-    menu1 = `1 Lookup information for Company Name or ASX Code.`,
-    menu2 = `2 Today's Top Gainers and Losers.`,
-    menu3 = `3 Today's latest Market News.`;
+    menu1 = `1 Lookup information for Company Name or ASX Code! `,
+    menu2 = `2 Today's Top Gainers and Losers! `,
+    menu3 = `3 Today's latest Market News! `,
+    menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
 
 exports.handler = (event, context) => {
     try {
@@ -60,10 +61,10 @@ function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
     // prepare the initial speec
-    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
+    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. ${menuText}`;
 
     callback(session.attributes,
-        buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
+        buildSpeechletResponse(`Welcome to Audio Biz - ${AFRTagLine}.`, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
 }
 
 /**
@@ -99,12 +100,12 @@ function handleAudioBizRequest(intent, session, callback) {
     // keep only the alphabets
     const companyAskedFor = intent.slots.Company.value.replace(/[^a-z]/gi, '');
     getSharePriceData(intent.slots.Company.value, data => {
-        callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . ${menuText}`, menuText, false));
     });
 }
 
 function handleGainersandLosers(intent, session, callback) {
-    callback(session.attributes, buildSpeechletResponseWithoutCard("hello gainers and losers", "", false));
+    callback(session.attributes, buildSpeechletResponseWithoutCard("hello gainers and losers", menuText, false));
 }
 
 // ------- Helper functions to build responses -------
