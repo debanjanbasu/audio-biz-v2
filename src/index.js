@@ -1,6 +1,10 @@
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
-const getSharePriceData = require('./functional_modules/get_share_price_data');
+const getSharePriceData = require('./functional_modules/get_share_price_data'),
+    AFRTagLine = `The daily habit of successful people!`,
+    menu1 = `1 Lookup information for Company Name or ASX Code.`,
+    menu2 = `2 Get today's Top Gainers and Losers.`,
+    menu3 = `3 Get today's latest Market News.`;
 
 exports.handler = (event, context) => {
     try {
@@ -55,13 +59,9 @@ function onSessionStarted(sessionStartedRequest, session) {
 function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
-    const AFRTagLine = `The daily habit of successful people!`,
-        cardTitle = `Welcome to Audio Biz - ${AFRTagLine}`,
-        menu1 = `1. Lookup information for Company Name or ASX Code`,
-        menu2 = `2. Get today's Top Gainers and Losers`,
-        menu3 = `3. Get today's latest Market News`;
     // prepare the initial speec
-    const speechOutput = `${cardTitle}. You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
+    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. 
+    You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
 
     callback(session.attributes,
         buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
@@ -100,7 +100,7 @@ function handleAudioBizRequest(intent, session, callback) {
     getSharePriceData(intent.slots.Company.value, data => {
         callback(session.attributes,
             buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is
-            ${JSON.stringify(data)}`, "", "true"));
+            ${JSON.stringify(data)}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
 
 }
