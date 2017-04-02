@@ -7,7 +7,7 @@ module.exports = {
     target: 'node',
     output: {
         filename: '../dist/index.js',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'commonjs'
     },
     plugins: [
         new UglifyJSPlugin({
