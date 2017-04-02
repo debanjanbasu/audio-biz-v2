@@ -22,8 +22,8 @@ module.exports = (articleToBeRead, cb) => {
             });
             return articleTitles;
         }).then(articles => {
-            console.log(articles);
-            const matchedArticle = getClosestMatchArticle("Clean-up underway in Logan, south of Brisbane, after river peaks", articles);
+            // console.log(articles);
+            const matchedArticle = getClosestMatchArticle(articleToBeRead, articles);
             diffbot.article({ uri: matchedArticle.url }, (err, response) => {
                 cb(response.objects[0].text);
             });
