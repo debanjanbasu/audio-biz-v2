@@ -2,15 +2,6 @@
     "dependencies": {
         "diffbot": "^1.0.3",
         "fuzzyset.js": "^0.0.1",
-        "node-fetch": "^2.0.0-alpha.3",
-        "webpack": "^2.3.2"
-    },
-    "scripts": {
-        "build-prod": "webpack -p",
-        "start": "npm run build-prod"
-    },
-    "devDependencies": {
-        "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
-        "uglifyjs-webpack-plugin": "^0.4.0"
+        "node-fetch": "^2.0.0-alpha.3"
     }
 }
