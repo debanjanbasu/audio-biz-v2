@@ -60,8 +60,7 @@ function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
     // prepare the initial speec
-    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. 
-    You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
+    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`;
 
     callback(session.attributes,
         buildSpeechletResponse(cardTitle, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
@@ -79,6 +78,8 @@ function onIntent(intentRequest, session, callback) {
     // dispatch custom intents to handlers here
     if (intentName == 'AudioBizStock') {
         handleAudioBizRequest(intent, session, callback);
+    } else if (intentName == 'GainersandLosers') {
+        buildSpeechletResponseWithoutCard("today's top gainers and losers", "", false);
     } else {
         throw "Invalid intent";
     }
@@ -99,7 +100,7 @@ function handleAudioBizRequest(intent, session, callback) {
     const companyAskedFor = intent.slots.Company.value.replace(/[^a-z]/gi, '');
     getSharePriceData(intent.slots.Company.value, data => {
         callback(session.attributes,
-            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
+            buildSpeechletResponseWithoutCard(`You asked for company ${companyAskedFor} and the information for it is ${JSON.stringify(data)} . You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, `You can say any of the follwoing commands : ${menu1 + menu2 + menu3}`, false));
     });
 
 }

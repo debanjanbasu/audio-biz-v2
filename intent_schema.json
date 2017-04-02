@@ -6,6 +6,8 @@
         }],
         "intent": "AudioBizStock"
     }, {
+        "intent": "GainersandLosers"
+    }, {
         "intent": "AMAZON.StartOverIntent"
     }, {
         "intent": "AMAZON.RepeatIntent"
