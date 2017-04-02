@@ -4,7 +4,7 @@
             "name": "Company",
             "type": "AMAZON.Corporation"
         }],
-        "intent": "AudioBiz"
+        "intent": "AudioBizStock"
     }, {
         "intent": "AMAZON.StartOverIntent"
     }, {

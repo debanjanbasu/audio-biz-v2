@@ -1,4 +1,7 @@
-AudioBiz for {Company}
-TestIntent hello world
-TestIntent say hello world
-TestIntent to say hello world
+AudioBizStock to lookup information for {Company}
+AudioBizStock to look up information for {Company}
+AudioBizStock to lookup info for {Company}
+AudioBizStock to lookup for {Company}
+AudioBizStock to find information for {Company}
+AudioBizStock to find info for {Company}
+AudioBizStock to find {Company}

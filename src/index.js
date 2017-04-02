@@ -77,7 +77,7 @@ function onIntent(intentRequest, session, callback) {
     const intentName = intentRequest.intent.name;
 
     // dispatch custom intents to handlers here
-    if (intentName == 'AudioBiz') {
+    if (intentName == 'AudioBizStock') {
         handleAudioBizRequest(intent, session, callback);
     } else {
         throw "Invalid intent";
