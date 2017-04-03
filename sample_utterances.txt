@@ -34,3 +34,4 @@ ReadArticle read article {Article} to me
 ReadArticle read {Article}
 ReadArticle read article {Article}
 ReadArticle to read article {Article}
+SendEmail send me email for latest news

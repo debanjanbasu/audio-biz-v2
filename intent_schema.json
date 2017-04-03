@@ -16,6 +16,8 @@
         }],
         "intent": "ReadArticle"
     }, {
+        "intent": "SendEmail"
+    }, {
         "intent": "AMAZON.StopIntent"
     }, {
         "intent": "AMAZON.CancelIntent"

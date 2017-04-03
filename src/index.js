@@ -1,15 +1,18 @@
+'use strict';
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
 const getSharePriceData = require('./functional_modules/get_share_price_data'),
     getGainersAndLosers = require('./functional_modules/get_top_gainers_and_losers'),
     getLatestNews = require('./functional_modules/get_latest_news'),
     readArticle = require('./functional_modules/read_article'),
+    sendEmail = require('./functional_modules/send_email'),
     AFRTagLine = `The daily habit of successful people!`,
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
     menu3 = `3 Latest Market News! `,
     menu4 = `4 Read Article for Article Title (I will try to match it from the Latest Articles!)`,
-    menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3 + menu4}`;
+    menu5 = `5 Send me email for latest news`,
+    menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3 + menu4 + menu5}`;
 
 exports.handler = (event, context) => {
     try {
@@ -89,6 +92,8 @@ function onIntent(intentRequest, session, callback) {
         handleLatestNews(intent, session, callback);
     } else if (intentName == 'ReadArticle') {
         handleReadArticle(intent, session, callback);
+    } else if (intentName == 'SendEmail') {
+        handleSendEmail(intent, session, callback);
     } else if (intentName == 'AMAZON.StopIntent' || intentName == 'AMAZON.CancelIntent') {
         handleAlexaStop(intent, session, callback);
     } else {
@@ -131,6 +136,14 @@ function handleReadArticle(intent, session, callback) {
     const articleAskedFor = intent.slots.Article.value;
     readArticle(articleAskedFor, data => {
         callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for article ${articleAskedFor} and the content in it is ${data} . ${menuText}`, menuText, false));
+    });
+}
+
+function handleSendEmail(intent, session, callback) {
+    getLatestNews(data => {
+        // send the email newsletter
+        sendEmail(data);
+        callback(session.attributes, buildSpeechletResponseWithoutCard(`The latest news have been emailed to you . ${menuText}`, menuText, false));
     });
 }
 
