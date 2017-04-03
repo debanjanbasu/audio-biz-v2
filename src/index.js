@@ -65,10 +65,10 @@ function onLaunch(launchRequest, session, callback) {
     console.log(`onLaunch requestId=${launchRequest.requestId}, sessionId=${session.sessionId}`);
 
     // prepare the initial speech
-    const speechOutput = `Welcome to Audio Biz - ${AFRTagLine}. ${menuText}`;
+    const speechOutput = `Welcome to Australian Financial Review - Audio Biz - ${AFRTagLine}. ${menuText}`;
 
     callback(session.attributes,
-        buildSpeechletResponse(`Welcome to Audio Biz - ${AFRTagLine}.`, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
+        buildSpeechletResponse(`Welcome to Australian Financial Review - Audio Biz - ${AFRTagLine}.`, speechOutput, "Sorry, I didn't get you, please ask me again!", false));
 }
 
 /**
@@ -89,6 +89,8 @@ function onIntent(intentRequest, session, callback) {
         handleLatestNews(intent, session, callback);
     } else if (intentName == 'ReadArticle') {
         handleReadArticle(intent, session, callback);
+    } else if (intentName == 'AMAZON.StopIntent' || intentName == 'AMAZON.CancelIntent') {
+        handleAlexaStop(intent, session, callback);
     } else {
         throw "Invalid intent";
     }
@@ -130,6 +132,10 @@ function handleReadArticle(intent, session, callback) {
     readArticle(articleAskedFor, data => {
         callback(session.attributes, buildSpeechletResponseWithoutCard(`You asked for article ${articleAskedFor} and the content in it is ${data} . ${menuText}`, menuText, false));
     });
+}
+
+function handleAlexaStop(intent, session, callback) {
+    callback(session.attributes, buildSpeechletResponseWithoutCard(`Thank you for using Australian Financial Review - Audio Biz`, "", true));
 }
 
 // ------- Helper functions to build responses -------
