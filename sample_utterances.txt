@@ -35,3 +35,6 @@ ReadArticle read {Article}
 ReadArticle read article {Article}
 ReadArticle to read article {Article}
 SendEmail send me email for latest news
+SendEmail send me email
+SendEmail send me the email for latest news
+SendEmail send me mail

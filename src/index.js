@@ -10,7 +10,7 @@ const getSharePriceData = require('./functional_modules/get_share_price_data'),
     menu1 = `1 Lookup information for Company Name or ASX Code! `,
     menu2 = `2 Today's Top Gainers and Losers! `,
     menu3 = `3 Latest Market News! `,
-    menu4 = `4 Read Article for Article Title (I will try to match it from the Latest Articles!)`,
+    menu4 = `4 Read Article for Article Title (I will try to match it from the Latest Articles!) `,
     menu5 = `5 Send me email for latest news`,
     menuText = `You can say any of the follwoing commands : ${menu1 + menu2 + menu3 + menu4 + menu5}`;
 
